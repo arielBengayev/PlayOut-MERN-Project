@@ -1,0 +1,31 @@
+.space-row{
+    height: 40px;
+}
+.space-cell{
+    width: 40px;
+    height: 40px;
+    /* border: 1px solid white; */
+    display: inline-block;
+}
+.space-cell-tank{
+    background-image: url('/siImages/ship.jpg');
+    background-size: cover;
+    background-position: center;
+}
+.space-cell-invader{
+    background-image: url('/siImages/invader.jpg');
+    background-size: cover;
+    background-position: center;
+}
+.space-cell-shot{
+    background-image: url('/siImages/shot.jpg');
+    background-size: cover;
+    background-position: center;
+    /* height: 20px;
+    width: 5px;
+    margin: 2px; */
+}
+.space{
+    border: 2px solid white;
+    border-radius: 5px;
+}

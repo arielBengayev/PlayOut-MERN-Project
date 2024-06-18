@@ -1,0 +1,49 @@
+.mg-board{
+    display: grid;
+    grid-template-columns: repeat(3,6rem);
+    grid-template-rows: repeat(3,6rem);
+    border-radius: 5px;
+    max-width: 260px;
+  }
+.mg-card{
+    background: #2B2B2B;
+    width: 75px;
+    height: 75px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+}
+.mg-img{
+    max-width: 40px;
+    max-height: 40px;
+    transform: scale(0);
+    transition: transform 0.5s;
+    animation: 2s hideImage linear;
+}
+@keyframes hideImage{
+    0%, 70%{
+        transform: scale(1);
+    }
+    100%{
+        transform: scale(0);
+    } 
+} 
+.mg-img.active{
+    transform: scale(1);
+}
+.mg-card.wrong{
+    background-color: #781515;
+}
+.mg-img.wrong{
+    transform: scale(1);
+}
+.mg-card.success{
+    background-color: green;
+}
+.mg-img.success{
+    transform: scale(1);
+}

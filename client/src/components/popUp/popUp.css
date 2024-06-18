@@ -1,0 +1,41 @@
+.pop-up{
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0; 
+}
+.pop-up-content{
+    background: #1C1C1C;
+    font-size: 1.2rem;
+    border-radius: 5px;
+    position: absolute;
+    top: 38%;
+    left: 39.6%;
+    width: 17rem;
+    padding: 20px;
+}
+.close-btn{
+    font-family: ROG fonts;
+    background: #4A4A4A;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 4% 5%;
+    margin: 4%;
+    cursor: pointer;
+}
+/* @media only screen and (max-width: 414px){
+    .pop-up-content{
+        background: #1C1C1C;
+        font-size: 1.2rem;
+        border-radius: 5px;
+        position: absolute;
+        top: 38%;
+        left: 39.6%;
+        width: 17rem;
+        padding: 20px;
+    }
+} */

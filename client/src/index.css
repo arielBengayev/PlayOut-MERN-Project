@@ -1,0 +1,82 @@
+body{
+    margin: 0;
+    font-family: ROG Fonts;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+    color: white;
+    align-items: center;
+    text-align: center;
+    user-select: none;
+  }
+  /* .container {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 10px;
+  }
+  .box1 {
+    flex: 1 1 100%;
+    margin: 10px;
+    background-color: lightblue;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  @media (min-width: 600px) {
+    .box1 {
+      flex: 1 1 45%;
+    }
+  }
+  
+  @media (min-width: 900px) {
+    .box1 {
+      flex: 1 1 30%;
+    }
+  }
+  
+  .app-container {
+    display: flex;
+  }
+  
+  .menu-button {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    font-size: 30px;
+    cursor: pointer;
+    z-index: 2;
+  }
+  
+  .sidebar {
+    position: fixed;
+    left: -200px;
+    top: 0;
+    width: 200px;
+    height: 100%;
+    background-color: #333;
+    color: white;
+    padding-top: 60px;
+    transition: 0.3s;
+    z-index: 1;
+  }
+  
+  .sidebar.open {
+    left: 0;
+  }
+  
+  .menu-item {
+    padding: 16px;
+    text-align: center;
+    border-bottom: 2px solid #444;
+  }
+  
+  .content {
+    flex: 1;
+    margin-left: 0;
+    transition: margin-left 0.3s;
+  }
+  
+  .app-container.menu-open .content {
+    margin-left: 250px;
+  }  */
