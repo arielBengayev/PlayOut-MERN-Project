@@ -26,7 +26,12 @@ export default function SignUp(){
             setCorrectEmail({...correctEmail, correct: false})
             return false
         } 
-        users.find(u => u.email === user.email && setCorrectEmail({...correctEmail, exist: true}))
+        if(users.find(u => {
+            if(u.email === user.email){  
+                setCorrectEmail({...correctEmail, exist: true})
+                return true
+            }
+            })) return false
         return true
     }
 
@@ -35,7 +40,12 @@ export default function SignUp(){
             setCorrectUsername({...correctUsername, correct: false})
             return false
         }
-        users.find(u => u.name === user.name && setCorrectUsername({...correctUsername, exist: true}))
+        if(users.find(u => {
+            if(u.name === user.name){ 
+                setCorrectUsername({...correctUsername, exist: true})
+                return true
+            }
+            })) return false
          return true
     }
 
@@ -48,12 +58,18 @@ export default function SignUp(){
     }
 
     const addUser = () => {
-        console.log(isEmailCorrect(), isUsernameCorrect(), isPasswordCorrect())
-        // if(canSignUp === 3){
-        //     axios.post('http://localhost:3001/add', user)
-        //     .then(result => console.log(result))
-        //     .catch(err => console.log(err))
-        // }
+        if(isEmailCorrect() && isUsernameCorrect() && isPasswordCorrect()){
+            axios.post('http://localhost:3001/add', user)
+            .then(result => console.log(result))
+            .catch(err => console.log(err))
+            return true
+        }
+        return false
+    }
+
+    const handleSignUn = (e) => {
+        e.preventDefault()
+        if(addUser()) navigate('/home')
     }
 
     return(
@@ -69,7 +85,7 @@ export default function SignUp(){
                 {!correctUsername.correct && <label className='incorrect'>please choose a username</label>}
                 <input type="password" placeholder="Password" value={user.password} onChange={handlePassword}/>
                 {!correctPassword && <label className='incorrect'>min 8 char, including numbers</label>}
-                <button onClick={addUser}>Sign Un</button>
+                <button onClick={handleSignUn}>Sign Un</button>
             </div>
         </div>
     )
