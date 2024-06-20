@@ -1,23 +1,27 @@
-.pop-up{
+.pop-up {
     width: 100vw;
     height: 100vh;
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
-    bottom: 0; 
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    background: rgba(0, 0, 0, 0.7);
 }
-.pop-up-content{
+
+.pop-up-content {
     background: #1C1C1C;
     font-size: 1.2rem;
-    border-radius: 5px;
-    position: absolute;
-    top: 38%;
-    left: 39.6%;
+    border-radius: 8px;
     width: 17rem;
     padding: 20px;
 }
-.close-btn{
+
+.close-btn {
     font-family: ROG fonts;
     background: #4A4A4A;
     color: white;
@@ -27,15 +31,3 @@
     margin: 4%;
     cursor: pointer;
 }
-/* @media only screen and (max-width: 414px){
-    .pop-up-content{
-        background: #1C1C1C;
-        font-size: 1.2rem;
-        border-radius: 5px;
-        position: absolute;
-        top: 38%;
-        left: 39.6%;
-        width: 17rem;
-        padding: 20px;
-    }
-} */

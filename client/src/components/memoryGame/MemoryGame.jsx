@@ -55,8 +55,7 @@ export default function MemoryGame(){
         <div className='mg-board'>
             {cards.map((card, index) => {
                 return <Card card={card} key={index} index={index} click={click}/>
-                })}   
-            <PopUp status={status}/>    
+                })}       
         </div>
     );
 }

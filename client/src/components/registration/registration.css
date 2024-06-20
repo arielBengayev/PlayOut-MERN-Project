@@ -7,7 +7,6 @@
     font-family: "Poppins", sans-serif;
      /* background-color: transparent;
     backdrop-filter: blur(30px); */
-    /* background-color: #171717;  */
     box-shadow: 0 0 12px #ffffff;
     border: 1px solid;
     font-size: 12px;
@@ -42,6 +41,7 @@
 .registration button{
     background-color: #1D3965;
     color: white;
+    border: none;
     border-radius: 20px;
     width: 110px;
     height: 35px;
@@ -73,3 +73,9 @@ font-size: 15px;
     color: #204074;
     text-decoration: underline;
 }
+  @media (max-height: 550px) {
+    .registration .main-container{
+        height: 200px;
+        width: 250px;
+    }
+  }

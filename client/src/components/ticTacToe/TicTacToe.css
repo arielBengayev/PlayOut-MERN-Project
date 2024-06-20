@@ -3,7 +3,7 @@
     grid-template-columns: repeat(3,5.1rem);
     border-radius: 5px;
     max-width: 260px;
-    padding: 10%;
+    padding: 10px;
   }
   .box{
     border: 2px solid;
@@ -12,7 +12,7 @@
     background: #2B2B2B;
     font-size: 3rem;
     width: 80px;
-    height: 97px;
+    height: 100px;
     cursor: pointer;
     transition: background-color 0.3s ease;
   }

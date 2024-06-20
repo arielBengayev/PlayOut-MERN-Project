@@ -1,9 +1,9 @@
 .space-row{
-    height: 40px;
+    height: 50px;
 }
 .space-cell{
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
     /* border: 1px solid white; */
     display: inline-block;
 }
@@ -21,11 +21,26 @@
     background-image: url('/siImages/shot.jpg');
     background-size: cover;
     background-position: center;
-    /* height: 20px;
-    width: 5px;
-    margin: 2px; */
 }
 .space{
     border: 2px solid white;
     border-radius: 5px;
 }
+@media (max-width: 600px) {
+    .space-row {
+      height: 35px;
+    }
+    .space-cell{
+        width: 35px;
+        height: 35px;
+    }
+  }
+  @media (max-height: 500px) {
+    .space-row {
+      height: 25px;
+    }
+    .space-cell{
+        width: 25px;
+        height: 25px;
+    }
+  }

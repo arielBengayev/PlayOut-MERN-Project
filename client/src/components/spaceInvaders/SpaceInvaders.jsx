@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from 'react'
-import PopUp from '../popUp/PopUp'
 import './spaceInvaders.css'
 
 //fix shot bug 
@@ -32,7 +31,6 @@ export default function SpaceInvaders(){
     const [tankShot, setTankShot] = useState(false)
     const [shotPlace, setShotPlace] = useState(0)
     //const [invaderShotPlace, setInvaderShotPlace] = useState(Math.floor((Math.random() * invaders.length+11) + invaders.length+1))
-    const [status, setStatus] = useState(false)
 
     const invadersCheck = (cell) => {
         for(let i of invaders) if(cell === i) return true
@@ -105,21 +103,20 @@ export default function SpaceInvaders(){
     
     return(
         <>
-        <div className='space' onKeyDown={moveTank} tabIndex="0">
-            {board.map((row, rowIdx) => (
-                <div key={rowIdx} className="space-row">{
-                    row.map((cell, cellIdx) => (
-                    <div key={cellIdx} className={`space-cell 
-                        ${cell === tank && 'space-cell-tank'} 
-                        ${invadersCheck(cell) && 'space-cell-invader'}
-                        ${tankShot && cell === shotPlace && 'space-cell-shot'}
-                       `}>
-                    </div>
-                    ))}
-                </div> 
-            ))}
-         </div>
-         <PopUp status={status}/>
+            <div className='space' onKeyDown={moveTank} tabIndex="0">
+                {board.map((row, rowIdx) => (
+                    <div key={rowIdx} className="space-row">{
+                        row.map((cell, cellIdx) => (
+                        <div key={cellIdx} className={`space-cell 
+                            ${cell === tank && 'space-cell-tank'} 
+                            ${invadersCheck(cell) && 'space-cell-invader'}
+                            ${tankShot && cell === shotPlace && 'space-cell-shot'}
+                           `}>
+                        </div>
+                        ))}
+                    </div> 
+                ))}
+             </div>
          </>
     );
 }

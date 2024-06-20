@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import PopUp from '../popUp/PopUp';
+import PopUp from '../popUp/PopUp'
 import './snake.css'
 
 export default function SnakeGame() {
@@ -72,7 +72,6 @@ export default function SnakeGame() {
             style={{ left: `${food.x * 20}px`, top: `${food.y * 20}px` }}
           />
         </div>
-        <PopUp status={status}/>
     </div>
   );
 }
