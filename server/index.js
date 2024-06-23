@@ -7,7 +7,6 @@ const app = express()
 app.use(cors())
 app.use(express.json())
 
-const dbUrl = 'mongodb+srv://ariel:ariel123@ariel.6sfuhu5.mongodb.net/PlayOut?retryWrites=true&w=majority&appName=ariel'
 mongoose.connect(dbUrl)
 
 app.get('/get', (req, res) => {
