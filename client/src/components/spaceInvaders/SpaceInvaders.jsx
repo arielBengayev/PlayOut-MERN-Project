@@ -1,11 +1,12 @@
 import React, {useState, useEffect} from 'react'
+import { useNavigate } from "react-router-dom"
 import './spaceInvaders.css'
 
 //fix shot bug 
 //invaders shot
 //ship life
 
-export default function SpaceInvaders(){
+export default function SpaceInvaders({win, setWin}){
     const createBord = () => {
         let c = 1
         const board = []
@@ -31,6 +32,7 @@ export default function SpaceInvaders(){
     const [tankShot, setTankShot] = useState(false)
     const [shotPlace, setShotPlace] = useState(0)
     //const [invaderShotPlace, setInvaderShotPlace] = useState(Math.floor((Math.random() * invaders.length+11) + invaders.length+1))
+    const navigate = useNavigate()
 
     const invadersCheck = (cell) => {
         for(let i of invaders) if(cell === i) return true
@@ -68,11 +70,10 @@ export default function SpaceInvaders(){
                 setShotPlace(0)
             }
         }
-        win()
+        winCheck()
     }
 
-    const win = () => {if(invaders.length === 0) setStatus(true)}
-    const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+    const winCheck = () => {if(invaders.length === 32) setWin(true)}
 
     useEffect(() =>{
         const moveInvadersInterval = setInterval (moveInvaders, 1000)
@@ -118,6 +119,6 @@ export default function SpaceInvaders(){
                 ))}
              </div>
          </>
-    );
+    )
 }
 //${cell === invaderShotPlace && 'space-cell-shot'}

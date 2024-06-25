@@ -1,9 +1,8 @@
 import React, {useState, useRef} from 'react'
 import Card from './Card'
-import PopUp from '../popUp/PopUp'
 import './memoryGame.css'
 
-export default function MemoryGame(){
+export default function MemoryGame({win, setWin}){
     const [cards, setCards] = useState([
         {id: 0, name: 'apple', status: '', img: '/mgImages/0.jpg'},
         {id: 0, name: 'apple', status: '', img: '/mgImages/0.jpg'},
@@ -19,7 +18,6 @@ export default function MemoryGame(){
         {id: 5, name: 'css', status: '', img: '/mgImages/5.jpg'},
     ].sort(() => Math.random() - 0.5))
     const [previous, setPrevious] = useState(-1)
-    const [status, setStatus] = useState(false)
     const count = useRef(0)
 
     const check = (current) => {
@@ -28,7 +26,8 @@ export default function MemoryGame(){
             cards[previous].status = "success"
             setCards([...cards])
             setPrevious(-1)
-            count.current ++ === 5 ? setStatus(true) : null  
+            count.current++
+            if(count.current === 1) setWin(true)
         }else if(current != previous){
             cards[current].status = "wrong"
             cards[previous].status = "wrong"
@@ -55,7 +54,7 @@ export default function MemoryGame(){
         <div className='mg-board'>
             {cards.map((card, index) => {
                 return <Card card={card} key={index} index={index} click={click}/>
-                })}       
+                })}          
         </div>
-    );
+    )
 }

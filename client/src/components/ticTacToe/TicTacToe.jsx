@@ -1,16 +1,15 @@
 import React, { useState, useEffect} from "react"
 import { useNavigate } from "react-router-dom"
 import Board from "./Board"
-import PopUp from "../popUp/PopUp"
 import './TicTacToe.css'
 
-export default function TicTacToe(){
+export default function TicTacToe({win, setWin}){
     const [boxes, setBoxes] = useState(Array(9).fill(null))
     const [playerTurn, setPlayerTurn] = useState("x")
-    const [status, setStatus] = useState(false)
     const [user, setUser] = useState(true)
-    const navigate = useNavigate()
     const winConditions = [[0,1,2], [3,4,5], [6,7,8],[0,3,6], [1,4,7], [2,5,8],[0,4,8],[2,4,6]]
+    const navigate = useNavigate()
+
     const winCheck = (boxes) =>{
         for(let i of winConditions){
             if(boxes[i[0]] && boxes[i[0]] === boxes[i[1]] && boxes[i[1]] === boxes[i[2]])
@@ -24,7 +23,7 @@ export default function TicTacToe(){
             const updated = [...boxes]
             updated[index] = playerTurn
             setBoxes(updated)
-            if(winCheck(updated)) navigate('/nextGame')    
+            if(winCheck(updated)) setWin(true)    
             setPlayerTurn("o")
             setUser(false)
         } 
@@ -47,7 +46,6 @@ export default function TicTacToe(){
     return(
         <div>
             <Board boxes={boxes} playerTurn={playerTurn} fill={userFill}/>
-            {/* <PopUp status={status}/> */}
         </div>
-    );
+    )
 }

@@ -1,7 +1,7 @@
-import React, {useEffect, useState, useRef} from "react";
+import React, {useEffect, useState, useRef} from "react"
 import './stopWatch.css'
 
-export default function StopWatch({clicked}){
+export default function StopWatch({run}){
     const [running, setRunning] = useState(false)
     const [elapsedTime, setElapsedTime] = useState(0)
     const intervalRef = useRef(null)
@@ -18,7 +18,7 @@ export default function StopWatch({clicked}){
     }, [running])
 
     const start = () =>{
-        if(clicked){
+        if(run){
             setRunning(true)
             startRef.current = Date.now() - elapsedTime
         }
