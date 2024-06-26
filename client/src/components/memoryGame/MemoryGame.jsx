@@ -2,7 +2,7 @@ import React, {useState, useRef} from 'react'
 import Card from './Card'
 import './memoryGame.css'
 
-export default function MemoryGame({win, setWin}){
+export default function MemoryGame({ setWin }){
     const [cards, setCards] = useState([
         {id: 0, name: 'apple', status: '', img: '/mgImages/0.jpg'},
         {id: 0, name: 'apple', status: '', img: '/mgImages/0.jpg'},
@@ -27,7 +27,7 @@ export default function MemoryGame({win, setWin}){
             setCards([...cards])
             setPrevious(-1)
             count.current++
-            if(count.current === 1) setWin(true)
+            if(count.current === 6) setWin(true)
         }else if(current != previous){
             cards[current].status = "wrong"
             cards[previous].status = "wrong"

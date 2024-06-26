@@ -1,13 +1,11 @@
 import { useState, useEffect } from 'react'
 import axios from "axios"
 import { NavLink, useNavigate } from "react-router-dom"
-// import { CiUser, CiLock } from "react-icons/ci"
 import './registration.css'
 
 export default function LogIn(){
     const [user, setUser] = useState({name: "", password: ""})
     const [users, setUsers] = useState([])
-    const [path, setPath] = useState(false)
     const [correct, setCorrect] = useState(true)
     const navigate = useNavigate()
 

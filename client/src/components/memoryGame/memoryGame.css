@@ -17,6 +17,10 @@
     align-items: center;
     user-select: none;
 }
+.mg-card:hover{
+    background-color: #1e1e1e;
+    box-shadow: 0 0 10px white;
+}
 .mg-img{
     max-width: 40px;
     max-height: 40px;

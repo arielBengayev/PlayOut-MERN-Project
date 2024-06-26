@@ -8,10 +8,10 @@ import Snake from "../snake/Snake"
 
 export default function NextGame(){
     const [win, setWin] = useState(false)
-    const games = [ <SpaceInvaders key='1' win={win} setWin={setWin} />, 
-                    <MemoryGame key='2' win={win} setWin={setWin} />, 
-                    <TicTacToe key='3' win={win} setWin={setWin} />, 
-                    <Snake key='4' win={win} setWin={setWin} />]
+    const games = [ <SpaceInvaders key='1' setWin={setWin} />, 
+                    <MemoryGame key='2' setWin={setWin} />, 
+                    <TicTacToe key='3' setWin={setWin} />, 
+                    <Snake key='4' setWin={setWin} />]
     const [currentGame, setCurrentGame] = useState(games[Math.floor(Math.random()*games.length)])
     const [playedGames, setPlayedGames] = useState([currentGame.key])
     const navigate = useNavigate()

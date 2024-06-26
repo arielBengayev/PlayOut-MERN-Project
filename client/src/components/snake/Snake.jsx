@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from 'react'
-import { useNavigate } from "react-router-dom"
 import './snake.css'
 
-export default function SnakeGame({win, setWin}) {
+export default function SnakeGame({ setWin }) {
   const [snake, setSnake] = useState([{ x: 10, y: 10 }])
   const [food, setFood] = useState({ x: 15, y: 15 })
   const [direction, setDirection] = useState({ x: 0, y: -1 })
   const [gameOver, setGameOver] = useState(false)
-  const navigate = useNavigate()
 
   const moveSnake = () => {
     setSnake((prev) => {
@@ -30,7 +28,7 @@ export default function SnakeGame({win, setWin}) {
       newSnake.unshift(head);
       return newSnake;
     })
-    if(snake.length === 2) setWin(true)
+    if(snake.length === 6) setWin(true)
   }
 
   const restartGame = () => {
@@ -73,5 +71,5 @@ export default function SnakeGame({win, setWin}) {
           />
         </div>
     </div>
-  );
+  )
 }

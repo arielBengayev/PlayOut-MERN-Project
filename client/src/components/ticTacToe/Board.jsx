@@ -13,5 +13,5 @@ export default function Board({boxes, playerTurn, fill}){
             <Box playerTurn={playerTurn} click={() => fill(7)} value = {boxes[7]}/>
             <Box playerTurn={playerTurn} click={() => fill(8)} value = {boxes[8]}/>
         </div>   
-    );
+    )
 }

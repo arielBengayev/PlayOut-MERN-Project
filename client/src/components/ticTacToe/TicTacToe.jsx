@@ -1,14 +1,12 @@
 import React, { useState, useEffect} from "react"
-import { useNavigate } from "react-router-dom"
 import Board from "./Board"
 import './TicTacToe.css'
 
-export default function TicTacToe({win, setWin}){
+export default function TicTacToe({ setWin }){
     const [boxes, setBoxes] = useState(Array(9).fill(null))
     const [playerTurn, setPlayerTurn] = useState("x")
     const [user, setUser] = useState(true)
     const winConditions = [[0,1,2], [3,4,5], [6,7,8],[0,3,6], [1,4,7], [2,5,8],[0,4,8],[2,4,6]]
-    const navigate = useNavigate()
 
     const winCheck = (boxes) =>{
         for(let i of winConditions){
