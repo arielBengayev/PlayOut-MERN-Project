@@ -2,48 +2,42 @@ import React, { useState, useEffect} from "react"
 import Board from "./Board"
 import './TicTacToe.css'
 
-export default function TicTacToe({ setWin }){
+export default function TicTacToe({ win, setWin }){
     const [boxes, setBoxes] = useState(Array(9).fill(null))
     const [playerTurn, setPlayerTurn] = useState("x")
-    const [user, setUser] = useState(true)
     const winConditions = [[0,1,2], [3,4,5], [6,7,8],[0,3,6], [1,4,7], [2,5,8],[0,4,8],[2,4,6]]
 
-    const winCheck = (boxes) =>{
+    const winCheck = (boxes) => {
         for(let i of winConditions){
-            if(boxes[i[0]] && boxes[i[0]] === boxes[i[1]] && boxes[i[1]] === boxes[i[2]])
+            const [a, b, c] = i
+            if(boxes[a] && boxes[a] === boxes[b] && boxes[a] === boxes[c])
                 return true   
         }
         return false
     }
-    const userFill = (index) =>{
+
+    const userFill = (index) => {
         if(boxes[index] != null) return
-        if(user){
             const updated = [...boxes]
             updated[index] = playerTurn
             setBoxes(updated)
-            if(winCheck(updated)) setWin(true)    
-            setPlayerTurn("o")
-            setUser(false)
-        } 
+            if(winCheck(updated)) setWin(true) 
+            else setPlayerTurn("o") 
     }
+
     useEffect(() =>{
-        if(playerTurn === "o" && boxes.includes(null)){
+        if(playerTurn === "o" && boxes.includes(null) && !status.gameOver){
             let randomIdx = null
-            do { 
-                randomIdx = Math.floor(Math.random()*9)
+            do {randomIdx = Math.floor(Math.random()*9)}
+            while(boxes[randomIdx] != null);
                 const updated = [...boxes]
                 updated[randomIdx] = playerTurn
                 setBoxes(updated)
-                if(winCheck(updated)) setBoxes(Array(9).fill(null))    
-                setUser(true)
-                setPlayerTurn("x")
-            }
-            while(boxes[randomIdx] != null);
-        }else if(!boxes.includes(null)) setBoxes(Array(9).fill(null))
-    },[boxes])
-    return(
-        <div>
-            <Board boxes={boxes} playerTurn={playerTurn} fill={userFill}/>
-        </div>
-    )
+                if(winCheck(updated)) setBoxes(Array(9).fill(null)) 
+                else setPlayerTurn("x")
+        }
+        if(!boxes.includes(null) && !win) setBoxes(Array(9).fill(null))
+    },[boxes, playerTurn, status.gameOver])
+
+    return(<Board boxes={boxes} playerTurn={playerTurn} fill={userFill} />)
 }
