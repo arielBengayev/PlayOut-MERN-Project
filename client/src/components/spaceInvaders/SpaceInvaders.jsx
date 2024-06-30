@@ -1,41 +1,33 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useCallback} from 'react'
 import './spaceInvaders.css'
 
-//fix shot bug 
-//invaders shot
-//ship life
 
 export default function SpaceInvaders({ setWin }){
-    const createBord = () => {
+
+    const createBord = useCallback(() => {
         let c = 1
         const board = []
         for(let row=0; row<11; row++){
             const currentRow = []
-            for(let col=0; col<11; col++){currentRow.push(c++)}
+            for(let col=0; col<11; col++) currentRow.push(c++)
             board.push(currentRow)
         }
         return board
-    }
-    const invadersFill = () => {
+    }, [])
+
+    const invadersFill = useCallback(() => {
         const invaders = []
-        for(let i=1; i<34; i++){
-            //if(i>1 && i<11 || i>12 && i<22 || i>23 && i<33)
-                invaders.push(i)
-        }
+        for(let i=1; i<34; i++) invaders.push(i)
         return invaders
-    }
+    }, [])
+
     const board = createBord()
     const [tank, setTank] = useState(116)
     const [invaders, setInvaders] = useState(invadersFill())
-    //const [removeInvaders, setRemoveInvaders] = useState(invadersFill())
     const [tankShot, setTankShot] = useState(false)
     const [shotPlace, setShotPlace] = useState(0)
-    //const [invaderShotPlace, setInvaderShotPlace] = useState(Math.floor((Math.random() * invaders.length+11) + invaders.length+1))
 
-    const invadersCheck = (cell) => {
-        for(let i of invaders) if(cell === i) return true
-        return false
-    }
+    const invadersCheck = (cell) => { return invaders.includes(cell)}
 
     const moveTank = (e) => {
         if(e.key === 'ArrowRight' && tank < 121) setTank(tank+1)
@@ -46,59 +38,45 @@ export default function SpaceInvaders({ setWin }){
         }
     }
 
-    const removeInvader = () => {
+    const removeInvader = useCallback(() => {
         setInvaders(i => i.filter((invader) => shotPlace != invader)) 
-    }
+    }, [shotPlace])
 
-    const moveInvaders = () => {
-        if(invaders[invaders.length-1] < 109){
-            setInvaders(i => i.map((invader) => invader+11))
-        }else {
-            setInvaders(i => i.map((invader) => invader-78))
-            setInvaders(invadersFill())
-        }
-    }
+    const moveInvaders = useCallback(() => {
+        setInvaders((i) => {
+            if (i[i.length - 1] < 109) {
+                return i.map((invader) => invader + 11);
+            } else {
+                return invadersFill();
+            }
+        });
+    }, [invadersFill]);
 
-    const moveShot = () => {
+    const moveShot = useCallback(() => {
         if(tankShot){
             setShotPlace((s) => s-11)
-            if(invaders.find((invader) => shotPlace === invader) || shotPlace < 11){ 
+            if(invaders.includes(shotPlace) || shotPlace < 11){ 
                 removeInvader()
                 setTankShot(false)
                 setShotPlace(0)
             }
         }
         winCheck()
-    }
+    }, [tankShot, shotPlace, invaders, removeInvader])
 
-    const winCheck = () => {if(invaders.length === 0) setWin(true)}
+    const winCheck = useCallback(() => {
+        if(invaders.length === 0) setWin(true)
+    }, [invaders.length, setWin])
 
     useEffect(() =>{
-        const moveInvadersInterval = setInterval (moveInvaders, 1000)
+        const moveInvadersInterval = setInterval (moveInvaders, 1700)
          return () => clearInterval(moveInvadersInterval)
-    },[invaders])
+    },[moveInvaders])
 
     useEffect(()=>{
         const moveShotInterval = setInterval(moveShot , 10)
         return () => clearInterval(moveShotInterval)
-    },[shotPlace])
-
-
-    // useEffect(()=>{
-    //     const invaderShot = setInterval(()=>{ 
-    //         //setInvaderShotPlace(invaders[Math.floor((Math.random()*44)+34)])
-    //         //console.log(invaderShotPlace)
-    //         setInvaderShotPlace(invaderShotPlace+11)
-    //     }, 500)
-    //     return () => clearInterval(invaderShot)
-    // },[invaderShotPlace])
-
-    // useEffect(()=>{
-    //     const move = setInterval(()=>{
-    //         setInvaderShotPlace(invaderShotPlace+11)
-    //     }, 200)
-    //     return () => clearInterval(move)
-    // },[invaderShotPlace])
+    },[moveShot])
     
     return(
         <>
@@ -119,4 +97,3 @@ export default function SpaceInvaders({ setWin }){
          </>
     )
 }
-//${cell === invaderShotPlace && 'space-cell-shot'}
