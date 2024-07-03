@@ -45,7 +45,7 @@ export default function SnakeGame({ setWin }) {
         else if (e.key === 'ArrowLeft' && direction.x === 0) setDirection({ x: -1, y: 0 })
         else  if (e.key === 'ArrowRight' &&direction.x === 0) setDirection({ x: 1, y: 0 })
     }
-    window.addEventListener('keydown', handleKeyDown);
+    window.addEventListener('keydown', handleKeyDown)
     return () => {window.removeEventListener('keydown', handleKeyDown)}
   }, [direction])
 

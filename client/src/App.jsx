@@ -6,6 +6,7 @@ import SignUp from "./components/registration/SignUp"
 import NotFoundPage from './components/notFoundPage/NotFoundPage'
 import ForgatPassword from './components/registration/ForgatPassword'
 import Games from './components/game/Games'
+import SpaceInvaders from './components/spaceInvaders/SpaceInvaders'
 
 const router = createBrowserRouter([
   {path: '/', element: <LogIn />, errorElement: <NotFoundPage />},

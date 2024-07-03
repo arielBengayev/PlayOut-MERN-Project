@@ -1,16 +1,14 @@
 import React, {useState, useEffect, useCallback} from 'react'
 import './spaceInvaders.css'
 
-
 export default function SpaceInvaders({ setWin }){
 
     const createBord = useCallback(() => {
         let c = 1
         const board = []
-        for(let row=0; row<11; row++){
-            const currentRow = []
-            for(let col=0; col<11; col++) currentRow.push(c++)
-            board.push(currentRow)
+        for(let cell=0; cell<121; cell++){
+            board.push(c)
+            c++
         }
         return board
     }, [])
@@ -21,55 +19,59 @@ export default function SpaceInvaders({ setWin }){
         return invaders
     }, [])
 
+    const randomPlace = (min, max) => { return Math.floor(Math.random()*max)+min }
+
     const board = createBord()
-    const [tank, setTank] = useState(116)
-    const [invaders, setInvaders] = useState(invadersFill())
-    const [tankShot, setTankShot] = useState(false)
-    const [shotPlace, setShotPlace] = useState(0)
+    const [tank, setTank] = useState({tankPlace: 116, shot: false, shotPlace: 0})
+    const [invaders, setInvaders] = useState({place: invadersFill(), shot: randomPlace(34, 45)})
 
-    const invadersCheck = (cell) => { return invaders.includes(cell)}
+    const invadersCheck = (cell) => { return invaders.place.includes(cell) }
 
-    const moveTank = (e) => {
-        if(e.key === 'ArrowRight' && tank < 121) setTank(tank+1)
-        else if(e.key === 'ArrowLeft' && tank > 111) setTank(tank-1)
-        else if(e.key === 'ArrowUp'){ 
-            setTankShot(true)
-            setShotPlace(tank-11)
-        }
+    const removeInvader = () => {
+        setInvaders(i => ({...i, place: i.place.filter(invader => tank.shotPlace !== invader)})) 
     }
-
-    const removeInvader = useCallback(() => {
-        setInvaders(i => i.filter((invader) => shotPlace != invader)) 
-    }, [shotPlace])
 
     const moveInvaders = useCallback(() => {
         setInvaders((i) => {
-            if (i[i.length - 1] < 109) {
-                return i.map((invader) => invader + 11);
-            } else {
-                return invadersFill();
-            }
-        });
-    }, [invadersFill]);
+            if (i.place[i.place.length - 1] >= 109)
+                return { ...i, place: invadersFill() }
+            return {...i, place: i.place.map(invader => invader+11)}
+        })
+    }, [invadersFill])
 
-    const moveShot = useCallback(() => {
-        if(tankShot){
-            setShotPlace((s) => s-11)
-            if(invaders.includes(shotPlace) || shotPlace < 11){ 
-                removeInvader()
-                setTankShot(false)
-                setShotPlace(0)
-            }
+    const moveShot = () => {
+        if(tank.shot){
+            setTank((prevTank) => {
+                if (invaders.place.includes(prevTank.shotPlace) || prevTank.shotPlace < 11){
+                    removeInvader();
+                    return { ...prevTank, shot: false, shotPlace: 0 }
+                }
+                return { ...prevTank, shotPlace: prevTank.shotPlace-11 }
+            })
         }
         winCheck()
-    }, [tankShot, shotPlace, invaders, removeInvader])
+    }
 
-    const winCheck = useCallback(() => {
-        if(invaders.length === 0) setWin(true)
-    }, [invaders.length, setWin])
+    const winCheck = () => { if(invaders.place.length === 0) setWin(true) }
+
+    useEffect(()=>{
+        const moveTank = (e) => {
+            setTank((prevTank) => {
+                if (e.key === 'ArrowRight' && prevTank.tankPlace < 121)
+                    return { ...prevTank, tankPlace: prevTank.tankPlace + 1 }
+                else if (e.key === 'ArrowLeft' && prevTank.tankPlace > 111)
+                    return { ...prevTank, tankPlace: prevTank.tankPlace - 1 }
+                else if (e.key === ' ')
+                    return { ...prevTank, shot: true, shotPlace: prevTank.tankPlace - 11 }
+                return prevTank;
+            });
+        }
+        window.addEventListener('keydown', moveTank)
+        return () => {window.removeEventListener('keydown', moveTank)}
+    }, [tank])
 
     useEffect(() =>{
-        const moveInvadersInterval = setInterval (moveInvaders, 1700)
+        const moveInvadersInterval = setInterval (moveInvaders, 1200)
          return () => clearInterval(moveInvadersInterval)
     },[moveInvaders])
 
@@ -80,20 +82,16 @@ export default function SpaceInvaders({ setWin }){
     
     return(
         <>
-            <div className='space' onKeyDown={moveTank} tabIndex="0">
-                {board.map((row, rowIdx) => (
-                    <div key={rowIdx} className="space-row">{
-                        row.map((cell, cellIdx) => (
-                        <div key={cellIdx} className={`space-cell 
-                            ${cell === tank && 'space-cell-tank'} 
-                            ${invadersCheck(cell) && 'space-cell-invader'}
-                            ${tankShot && cell === shotPlace && 'space-cell-shot'}
-                           `}>
-                        </div>
-                        ))}
-                    </div> 
+            <div className='space'>
+                {board.map((cell, cellIdx) => (
+                    <div key={cellIdx} className={`space-cell 
+                         ${cell === tank.tankPlace && 'space-cell-tank'} 
+                         ${invadersCheck(cell) && 'space-cell-invader'}
+                         ${tank.shot && cell === tank.shotPlace && 'space-cell-shot'}
+                    `}>
+                    </div>
                 ))}
-             </div>
-         </>
+            </div>
+        </>
     )
 }
