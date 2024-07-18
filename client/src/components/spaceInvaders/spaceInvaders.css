@@ -30,12 +30,3 @@
         height: 35px;
     }
   }
-  @media (max-height: 500px) {
-    .space-row {
-      height: 25px;
-    }
-    .space-cell{
-        width: 25px;
-        height: 25px;
-    }
-  }

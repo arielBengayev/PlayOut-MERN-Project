@@ -4,18 +4,18 @@ import './memoryGame.css'
 
 export default function MemoryGame({ setWin }){
     const [cards, setCards] = useState([
-        {id: 0, name: 'apple', status: '', img: '/mgImages/0.jpg'},
-        {id: 0, name: 'apple', status: '', img: '/mgImages/0.jpg'},
-        {id: 1, name: 'spotify', status: '', img: '/mgImages/1.jpg'},
-        {id: 1, name: 'spotify', status: '', img: '/mgImages/1.jpg'},
-        {id: 2, name: 'youtub', status: '', img: '/mgImages/2.jpg'},
-        {id: 2, name: 'youtub', status: '', img: '/mgImages/2.jpg'},
-        {id: 3, name: 'html', status: '', img: '/mgImages/3.jpg'},
-        {id: 3, name: 'html', status: '', img: '/mgImages/3.jpg'},
-        {id: 4, name: 'js', status: '', img: '/mgImages/4.jpg'},
-        {id: 4, name: 'js', status: '', img: '/mgImages/4.jpg'},
-        {id: 5, name: 'css', status: '', img: '/mgImages/5.jpg'},
-        {id: 5, name: 'css', status: '', img: '/mgImages/5.jpg'},
+        { id: 0, name: 'apple', status: '', img: '/mgImages/0.jpg' },
+        { id: 0, name: 'apple', status: '', img: '/mgImages/0.jpg' },
+        { id: 1, name: 'spotify', status: '', img: '/mgImages/1.jpg' },
+        { id: 1, name: 'spotify', status: '', img: '/mgImages/1.jpg' },
+        { id: 2, name: 'youtub', status: '', img: '/mgImages/2.jpg' },
+        { id: 2, name: 'youtub', status: '', img: '/mgImages/2.jpg' },
+        { id: 3, name: 'html', status: '', img: '/mgImages/3.jpg' },
+        { id: 3, name: 'html', status: '', img: '/mgImages/3.jpg' },
+        { id: 4, name: 'js', status: '', img: '/mgImages/4.jpg' },
+        { id: 4, name: 'js', status: '', img: '/mgImages/4.jpg' },
+        { id: 5, name: 'css', status: '', img: '/mgImages/5.jpg' },
+        { id: 5, name: 'css', status: '', img: '/mgImages/5.jpg' },
     ].sort(() => Math.random() - 0.5))
     const [previous, setPrevious] = useState(-1)
     const count = useRef(0)
@@ -46,14 +46,18 @@ export default function MemoryGame({ setWin }){
             cards[index].status = "active"
             setCards([...cards])
             setPrevious(index)
-        }
-        else check(index)
+        }else check(index)
     }
 
     return(
         <div className='mg-board'>
             {cards.map((card, index) => {
-                return <Card card={card} key={index} index={index} click={click}/>
+                return <Card 
+                         card={  card } 
+                         key={ index } 
+                         index={ index } 
+                         click={ click } 
+                        />
                 })}          
         </div>
     )

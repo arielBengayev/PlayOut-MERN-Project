@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useCallback} from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import './spaceInvaders.css'
 
 export default function SpaceInvaders({ setWin }){
@@ -19,32 +19,43 @@ export default function SpaceInvaders({ setWin }){
         return invaders
     }, [])
 
-    const randomPlace = (min, max) => { return Math.floor(Math.random()*max)+min }
+    const randomPlace = (min, max) => { 
+        return Math.floor(Math.random()*max)+min 
+    }
 
     const board = createBord()
-    const [tank, setTank] = useState({tankPlace: 116, shot: false, shotPlace: 0})
-    const [invaders, setInvaders] = useState({place: invadersFill(), shot: randomPlace(34, 45)})
+    const [tank, setTank] = useState({ 
+        tankPlace: 116, 
+        shot: false, 
+        shotPlace: 0 
+    })
+    const [invaders, setInvaders] = useState({ 
+        place: invadersFill(), 
+        shot: randomPlace(34, 45) 
+    })
 
     const invadersCheck = (cell) => { return invaders.place.includes(cell) }
 
     const removeInvader = () => {
-        setInvaders(i => ({...i, place: i.place.filter(invader => tank.shotPlace !== invader)})) 
+        setInvaders(i => ({...i, place: i.place.filter(invader => 
+            tank.shotPlace !== invader)})) 
     }
 
     const moveInvaders = useCallback(() => {
         setInvaders((i) => {
             if (i.place[i.place.length - 1] >= 109)
                 return { ...i, place: invadersFill() }
-            return {...i, place: i.place.map(invader => invader+11)}
+            return { ...i, place: i.place.map(invader => invader+11) }
         })
     }, [invadersFill])
 
     const moveShot = () => {
         if(tank.shot){
             setTank((prevTank) => {
-                if (invaders.place.includes(prevTank.shotPlace) || prevTank.shotPlace < 11){
-                    removeInvader();
-                    return { ...prevTank, shot: false, shotPlace: 0 }
+                if (invaders.place.includes(prevTank.shotPlace) || 
+                    prevTank.shotPlace < 11){
+                        removeInvader();
+                        return { ...prevTank, shot: false, shotPlace: 0 }
                 }
                 return { ...prevTank, shotPlace: prevTank.shotPlace-11 }
             })
@@ -81,17 +92,17 @@ export default function SpaceInvaders({ setWin }){
     },[moveShot])
     
     return(
-        <>
-            <div className='space'>
-                {board.map((cell, cellIdx) => (
-                    <div key={cellIdx} className={`space-cell 
-                         ${cell === tank.tankPlace && 'space-cell-tank'} 
-                         ${invadersCheck(cell) && 'space-cell-invader'}
-                         ${tank.shot && cell === tank.shotPlace && 'space-cell-shot'}
-                    `}>
-                    </div>
-                ))}
-            </div>
-        </>
+      <>
+        <div className='space'>
+            {board.map((cell, cellIdx) => (
+                <div key={cellIdx} className={`space-cell 
+                    ${ cell === tank.tankPlace && 'space-cell-tank' } 
+                    ${ invadersCheck(cell) && 'space-cell-invader' }
+                    ${ tank.shot && cell === tank.shotPlace && 'space-cell-shot' }
+                `}>
+                </div>
+            ))}
+        </div>
+      </>
     )
 }

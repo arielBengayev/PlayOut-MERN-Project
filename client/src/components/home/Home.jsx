@@ -6,10 +6,15 @@ export default function Start(){
      const navigate = useNavigate()
 
     return (
-        <div >
+        <div className="home">
             <h1 className="main-title"> welcom to<br/> play out</h1>
             <ScoreList />
-            <button className="start-btn" onClick={()=>navigate('/games')}>start</button>
+            <button 
+             className="start-btn" 
+             onClick={ ()=>navigate('/games') }
+            >
+                start
+            </button>
         </div>
     )
 }

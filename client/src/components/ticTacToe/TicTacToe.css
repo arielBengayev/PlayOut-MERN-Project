@@ -5,7 +5,7 @@
     max-width: 260px;
     padding: 10px;
   }
-  .box{
+  .board .box{
     border: 2px solid;
     margin: 1px;
     font-family: ROG Fonts;
@@ -16,7 +16,7 @@
     cursor: pointer;
     transition: background-color 0.3s ease;
   }
-  .box:hover{
+  .board .box:hover{
     background-color: #1B1B1B;
   }
   .x-hover:hover::after{

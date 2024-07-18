@@ -12,9 +12,10 @@ export default function StopWatch({run}){
         format()
         if(running){
            intervalRef.current =  setInterval(() =>{
-            setElapsedTime(Date.now() - startRef.current)}, 10)
+            setElapsedTime(Date.now() - startRef.current)
+            }, 10)
         }
-        return () => {clearInterval(intervalRef.current)}
+        return () => { clearInterval(intervalRef.current) }
     }, [running])
 
     const start = () =>{
@@ -25,8 +26,8 @@ export default function StopWatch({run}){
     }
 
     const reset = () =>{
-            setElapsedTime(0)
-            setRunning(false)
+        setElapsedTime(0)
+        setRunning(false)
     }
 
     const zero = (n) => {
@@ -38,8 +39,12 @@ export default function StopWatch({run}){
         let m = Math.floor(elapsedTime / (1000 * 60) % 60)
         let s = Math.floor(elapsedTime / (1000) % 60)
         let ms = Math.floor(elapsedTime % 1000 / 100)
-        return `${zero(m)}:${zero(s)}:${zero(ms)}`
+        return `${ zero(m) }:${ zero(s) }:${ zero(ms) }`
     }
 
-    return(<div className="watch-display">{format()}</div>)
+    return(
+      <div className="watch-display">
+        { format() }
+      </div>
+    )
 }

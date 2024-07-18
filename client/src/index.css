@@ -2,10 +2,10 @@ body{
      margin: 0;
     font-family: ROG Fonts;
     background-color: black;
+    color: white;
     display: grid;
     place-items: center;
     min-height: 100vh;
-    color: white;
     align-items: center;
     text-align: center;
     user-select: none; 

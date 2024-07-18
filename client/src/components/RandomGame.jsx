@@ -1,18 +1,20 @@
 import React, { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
-import StopWatch from "../stopWatch/StopWatch"
-import MemoryGame from "../memoryGame/MemoryGame"
-import SpaceInvaders from "../spaceInvaders/SpaceInvaders"
-import TicTacToe from "../ticTacToe/TicTacToe"
-import Snake from "../snake/Snake"
 
-export default function NextGame(){
+import StopWatch from "./stopWatch/StopWatch"
+import MemoryGame from "./memoryGame/MemoryGame"
+import SpaceInvaders from "./spaceInvaders/SpaceInvaders"
+import TicTacToe from "./ticTacToe/TicTacToe"
+import Snake from "./snake/Snake"
+
+export default function randomGame(){
     const [win, setWin] = useState(false)
-    const games = [ <SpaceInvaders key='1' setWin={setWin} />, 
-                    <MemoryGame key='2' setWin={setWin} />, 
-                    <TicTacToe key='3' setWin={setWin} />, 
-                    <Snake key='4' setWin={setWin} />]
-    const [currentGame, setCurrentGame] = useState(games[Math.floor(Math.random()*games.length)])
+    const games = [ <SpaceInvaders key='1' setWin={ setWin } />, 
+                    <MemoryGame key='2' setWin={ setWin } />, 
+                    <TicTacToe key='3' setWin={ setWin } />, 
+                    <Snake key='4' setWin={ setWin } />]
+    const randomGame = games[Math.floor(Math.random()*games.length)]
+    const [currentGame, setCurrentGame] = useState(randomGame)
     const [playedGames, setPlayedGames] = useState([currentGame.key])
     const navigate = useNavigate()
     
@@ -38,8 +40,8 @@ export default function NextGame(){
 
     return (
         <>
-            <StopWatch run={true}/>
-            {currentGame}
+            <StopWatch run={ true } />
+            { currentGame }
         </>
     )
 }
