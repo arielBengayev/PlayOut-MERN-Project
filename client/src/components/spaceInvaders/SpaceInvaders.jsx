@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import './spaceInvaders.css'
 
-export default function SpaceInvaders({ setWin }){
+export default function SpaceInvaders({ setWinGame }){
 
-    const createBord = useCallback(() => {
+    const createBoard = useCallback(() => {
         let c = 1
         const board = []
         for(let cell=0; cell<121; cell++){
@@ -23,7 +23,7 @@ export default function SpaceInvaders({ setWin }){
         return Math.floor(Math.random()*max)+min 
     }
 
-    const board = createBord()
+    const board = createBoard()
     const [tank, setTank] = useState({ 
         tankPlace: 116, 
         shot: false, 
@@ -63,7 +63,7 @@ export default function SpaceInvaders({ setWin }){
         winCheck()
     }
 
-    const winCheck = () => { if(invaders.place.length === 0) setWin(true) }
+    const winCheck = () => { if(invaders.place.length === 0) setWinGame(true) }
 
     useEffect(()=>{
         const moveTank = (e) => {

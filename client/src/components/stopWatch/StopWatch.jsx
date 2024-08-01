@@ -1,8 +1,7 @@
-import React, {useEffect, useState, useRef} from "react"
+import React, { useEffect, useState, useRef } from "react"
 import './stopWatch.css'
 
-export default function StopWatch({run}){
-    const [running, setRunning] = useState(false)
+export default function StopWatch({ run, win, setScore, score }){
     const [elapsedTime, setElapsedTime] = useState(0)
     const intervalRef = useRef(null)
     const startRef = useRef(0)
@@ -10,24 +9,22 @@ export default function StopWatch({run}){
     useEffect(() =>{
         start()
         format()
-        if(running){
+        if(run){
            intervalRef.current =  setInterval(() =>{
             setElapsedTime(Date.now() - startRef.current)
             }, 10)
         }
         return () => { clearInterval(intervalRef.current) }
-    }, [running])
+    }, [])
 
     const start = () =>{
-        if(run){
-            setRunning(true)
-            startRef.current = Date.now() - elapsedTime
-        }
+        if(run)
+          startRef.current = Date.now() - elapsedTime
     }
 
     const reset = () =>{
         setElapsedTime(0)
-        setRunning(false)
+        run = false
     }
 
     const zero = (n) => {
@@ -36,11 +33,18 @@ export default function StopWatch({run}){
     }
 
     const format = () => {
-        let m = Math.floor(elapsedTime / (1000 * 60) % 60)
-        let s = Math.floor(elapsedTime / (1000) % 60)
-        let ms = Math.floor(elapsedTime % 1000 / 100)
-        return `${ zero(m) }:${ zero(s) }:${ zero(ms) }`
+        let time = {
+            m: Math.floor(elapsedTime / (1000 * 60) % 60),
+            s: Math.floor(elapsedTime / (1000) % 60),
+            ms: Math.floor(elapsedTime % 1000 / 100)
+        }
+        return `${ zero(time.m) }:${ zero(time.s) }:${ zero(time.ms) }`
     }
+
+    if(win){
+        run = false
+        setScore({ ...score, time: format() })
+    }    
 
     return(
       <div className="watch-display">

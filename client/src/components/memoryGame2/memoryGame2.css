@@ -1,0 +1,15 @@
+.board2{
+    display: grid;
+    grid-template-columns: repeat(10, 0fr);
+    border: 2px solid white;
+    border-radius: 5px;
+}
+.cell{
+    width: 45px;
+    height: 45px;
+    border: 1px solid white;
+    color: white;
+}
+.cell-hide{
+    background-color: white;
+}

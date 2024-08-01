@@ -2,7 +2,7 @@ import React, { useState, useEffect} from "react"
 import Board from "./Board"
 import './TicTacToe.css'
 
-export default function TicTacToe({ win, setWin }){
+export default function TicTacToe({ winGame, setWinGame }){
     const [boxes, setBoxes] = useState(Array(9).fill(null))
     const [playerTurn, setPlayerTurn] = useState("x")
     const winConditions = [
@@ -23,7 +23,7 @@ export default function TicTacToe({ win, setWin }){
             const updated = [...boxes]
             updated[index] = playerTurn
             setBoxes(updated)
-            if(winCheck(updated)) setWin(true) 
+            if(winCheck(updated)) setWinGame(true) 
             else setPlayerTurn("o") 
     }
 
@@ -38,7 +38,7 @@ export default function TicTacToe({ win, setWin }){
                 if(winCheck(updated)) setBoxes(Array(9).fill(null)) 
                 else setPlayerTurn("x")
         }
-        if(!boxes.includes(null) && !win) setBoxes(Array(9).fill(null))
+        if(!boxes.includes(null) && !winGame) setBoxes(Array(9).fill(null))
     },[boxes, playerTurn])
 
     return(

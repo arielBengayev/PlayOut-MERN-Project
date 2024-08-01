@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import './snake.css'
 
-export default function SnakeGame({ setWin }) {
+export default function SnakeGame({ setWinGame }) {
   const [snake, setSnake] = useState([{ x: 10, y: 10 }])
   const [food, setFood] = useState({ x: 15, y: 15 })
   const [direction, setDirection] = useState({ x: 0, y: -1 })
@@ -30,7 +30,7 @@ export default function SnakeGame({ setWin }) {
       return newSnake
     })
 
-    if(snake.length === 6) setWin(true)
+    if(snake.length === 6) setWinGame(true)
   }
 
   const restartGame = () => {

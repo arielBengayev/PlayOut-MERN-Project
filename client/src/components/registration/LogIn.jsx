@@ -1,6 +1,10 @@
 import { useState, useEffect } from 'react'
 import axios from "axios"
 import { NavLink, useNavigate } from "react-router-dom"
+
+import { useLocalStorage } from '../useLocalStorage'
+import { useStyle } from './StyleContext'
+
 import TextField from '@mui/material/TextField'
 import IconButton from '@mui/material/IconButton'
 import OutlinedInput from '@mui/material/OutlinedInput'
@@ -10,6 +14,7 @@ import FormControl from '@mui/material/FormControl'
 import Visibility from '@mui/icons-material/Visibility'
 import VisibilityOff from '@mui/icons-material/VisibilityOff'
 import Button from '@mui/material/Button'
+
 import './registration.css'
 
 export default function LogIn(){
@@ -17,35 +22,9 @@ export default function LogIn(){
     const [user, setUser] = useState({name: "", password: ""})
     const [users, setUsers] = useState([])
     const [err, setErr] = useState({username: false, password: false})
+    const { setItem } = useLocalStorage()
+    const style = useStyle()
     const navigate = useNavigate()
-    const inputStyle = {
-        '& .MuiOutlinedInput-root': {
-            '& fieldset': {
-              borderColor: 'white',
-            },
-            '&:hover fieldset': {
-              borderColor: 'white',
-            },
-            '&.Mui-focused fieldset': {
-              borderColor: 'white',
-            },
-        },
-        '& .MuiInputLabel-root': {
-            color: 'white',
-        },
-        '& .MuiInputBase-input': {
-            color: 'white',
-            backgroundColor: 'black',
-            '::placeholder': {
-              color: 'white',
-              opacity: 1,
-            },
-            '&:-webkit-autofill': {
-                  '-webkit-box-shadow': '0 0 0 1000px black inset', 
-                  '-webkit-text-fill-color': 'white',
-            }
-        },
-    }
 
     useEffect(() => {
         axios.get('http://localhost:3001/get')
@@ -65,8 +44,11 @@ export default function LogIn(){
         if (!foundUser) newErr.username = true
         else {
             if (foundUser.password !== user.password)
-                newErr.password = true
-            else navigate('/home')
+              newErr.password = true
+            else {
+              setItem(user.name)  
+              navigate('/home')
+            }
         }
         setErr(newErr)
     }
@@ -84,10 +66,10 @@ export default function LogIn(){
                 value={user.name} 
                 onChange={handleName} 
                 error={err.username} 
-                sx= {{ m: 2, ...inputStyle }}
+                sx= {{ m: 2, ...style }}
                 />
                 <FormControl 
-                sx={{ mb: 1, width: 225, ...inputStyle }} 
+                sx={{ mb: 1, width: 225, ...style }} 
                 variant="outlined"
                 >
                  <InputLabel htmlFor="outlined-adornment-password">
@@ -115,14 +97,14 @@ export default function LogIn(){
                  />
                 </FormControl>
                 <NavLink to='/reset' className='forgat-password'>
-                    Forgat Password?
+                  Forgat Password?
                 </NavLink>
                 <Button 
                 variant="outlined" 
-                onClick={handleErr} 
+                onClick={ handleErr } 
                 sx={{ m:2, width: '120px' }} size='large'
                 >
-                    login
+                  login
                 </Button>
                 <label className='new-member'>
                     new member? 

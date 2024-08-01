@@ -10,6 +10,7 @@ import FormControl from '@mui/material/FormControl'
 import Visibility from '@mui/icons-material/Visibility'
 import VisibilityOff from '@mui/icons-material/VisibilityOff'
 import Button from '@mui/material/Button'
+import { useStyle } from './StyleContext'
 import './registration.css'
 
 export default function SignUp(){
@@ -17,31 +18,9 @@ export default function SignUp(){
     const [user, setUser] = useState({email: "", name: "", password: ""})
     const [users, setUsers] = useState([])
     const [err, setErr] = useState({email: false, username: false, password: false})
+    const style = useStyle()
     const navigate = useNavigate()
-    const inputStyle = {
-            m: 1,
-            '& .MuiOutlinedInput-root': {
-            '& fieldset': {
-              borderColor: 'white',
-            },
-            '&:hover fieldset': {
-              borderColor: 'white',
-            },
-            '&.Mui-focused fieldset': {
-              borderColor: 'white',
-            },
-          },
-          '& .MuiInputLabel-root': {
-            color: 'white',
-          },
-          '& .MuiInputBase-input': {
-            color: 'white',
-            '::placeholder': {
-              color: 'white',
-              opacity: 1,
-            }
-          },
-    }
+
 
     useEffect(() => {
         axios.get('http://localhost:3001/get')
@@ -100,7 +79,7 @@ export default function SignUp(){
             axios.post('http://localhost:3001/add', user)
             .then(result => console.log(result))
             .catch(err => console.log(err))
-            navigate('/home')
+            navigate('/')
         }
     }
 
@@ -116,7 +95,7 @@ export default function SignUp(){
                 value={user.email} 
                 onChange={handleEmail} 
                 error={err.email} 
-                sx= { inputStyle }
+                sx= {{ mb: 2, ...style }}
                 />
                 <TextField 
                 id="outlined-basic" 
@@ -125,10 +104,10 @@ export default function SignUp(){
                 value={user.name} 
                 onChange={handleName} 
                 error={err.username} 
-                sx= { inputStyle }
+                sx= { { mb: 2, ...style } }
                 />
                 <FormControl 
-                sx={{ width: 225, ...inputStyle }} 
+                sx={{ width: 225, ...style }} 
                 variant="outlined"
                 >
                  <InputLabel htmlFor="outlined-adornment-password">

@@ -6,17 +6,21 @@ import SignUp from "./components/registration/SignUp"
 import NotFoundPage from './components/notFoundPage/NotFoundPage'
 import ForgatPassword from './components/registration/ForgatPassword'
 import RandomGame from './components/RandomGame'
+import { StyleProvider } from './components/registration/StyleContext'
+import StopWatch from './components/stopWatch/StopWatch'
 
 const router = createBrowserRouter([
-  {path: '/', element: <LogIn />, errorElement: <NotFoundPage />},
-  {path: '/home', element: <Home />},
-  {path: '/signUp', element: <SignUp />},
-  {path: '/reset', element: <ForgatPassword/>},
-  {path: '/games', element: <RandomGame />},
+  { path: '/', element: <LogIn />, errorElement: <NotFoundPage /> },
+  { path: '/home', element: <Home /> },
+  { path: '/signUp', element: <SignUp /> },
+  { path: '/reset', element: <ForgatPassword/> },
+  { path: '/games', element: <RandomGame /> },
 ])
 
 export default function App() {
   return (
-   <RouterProvider router={router} />
+    <StyleProvider>
+      <RouterProvider router={ router } />
+    </StyleProvider> 
   )
 }
