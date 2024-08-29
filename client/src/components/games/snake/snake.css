@@ -1,0 +1,27 @@
+.snake {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.snake .board {
+    position: relative;
+    min-width: 480px;
+    min-height: 480px;
+    border: 1px solid white;
+    border-radius: 5px;
+}
+.snake .snake-segment {
+    position: absolute;
+    border-radius: 5px;
+    background-color: green;
+    width: 20px;
+    height: 20px;
+}
+.snake .food {
+    position: absolute;
+    border-radius: 50px;
+    background-color: red;
+    width: 20px;
+    height: 20px;
+}

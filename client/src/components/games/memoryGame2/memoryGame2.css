@@ -1,0 +1,15 @@
+.order-remember .board{
+    display: grid;
+    grid-template-columns: repeat(10, 0fr);
+    border: 2px solid white;
+    border-radius: 5px;
+}
+.order-remember .cell{
+    width: 47px;
+    height: 47px;
+    border: 1px solid;
+}
+.order-remember .cell-hide{
+    background-color: white;
+    cursor: pointer;
+}  

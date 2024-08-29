@@ -1,0 +1,27 @@
+.home .main-title{
+    letter-spacing: 3px;
+    max-width: 390px;
+}
+.home .score-list{
+    font-family: Arial, Helvetica, sans-serif;
+    letter-spacing: 2px;
+    border: 1px solid;
+    border-radius: 5px;
+    min-height: 370px;
+    min-width: 290px;
+    margin: 30px;
+    box-shadow: 0 0 10px;
+}
+ol{
+    margin-top: 20px;
+}
+li {
+    padding-right: 80px;
+    margin-top: 10px;
+    font-size: 18px;
+    text-align: left;
+}
+.home .line{
+    box-shadow: 0 0 10px;
+    border: 1px solid;
+}

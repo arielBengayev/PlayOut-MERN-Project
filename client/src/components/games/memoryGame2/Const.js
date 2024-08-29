@@ -1,0 +1,1 @@
+export const gameTitle = 'remember the order'

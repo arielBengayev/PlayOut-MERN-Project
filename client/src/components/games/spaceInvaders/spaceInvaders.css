@@ -1,0 +1,35 @@
+.space .title{
+    margin-left: 5px;
+}
+.space .board{
+    display: grid;
+    grid-template-columns: repeat(11, 1fr);
+    border: 2px solid white;
+    border-radius: 5px;
+}
+.space .cell{
+    width: 44px;
+    height: 44px;
+    /* border: 1px solid white; */
+}
+.space .cell-tank{
+    background-image: url('/siImages/ship.jpg');
+    background-size: cover;
+    background-position: center;
+}
+.space .cell-invader{
+    background-image: url('/siImages/invader.jpg');
+    background-size: cover;
+    background-position: center;
+}
+.space .cell-shot{
+    background-image: url('/siImages/shot.jpg');
+    background-size: cover;
+    background-position: center;
+}
+/* @media (max-width: 600px) {
+    .space .cell{
+        width: 35px;
+        height: 35px;
+    }
+  } */

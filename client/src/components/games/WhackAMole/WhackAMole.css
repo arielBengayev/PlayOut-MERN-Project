@@ -1,0 +1,14 @@
+.Whack-a-Mole{
+    display: grid;
+    grid-template-columns: repeat(10, 0fr);
+    border: 2px solid white;
+    border-radius: 5px;
+}
+.Whack-a-Mole .cell{
+    width: 49px;
+    height: 49px;
+    cursor: pointer;
+}
+.Whack-a-Mole .mole{
+    max-width: 45px;
+}

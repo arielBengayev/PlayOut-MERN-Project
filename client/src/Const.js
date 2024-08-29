@@ -1,0 +1,6 @@
+export const homePage = '/'
+export const loginPage = '/login'
+export const signUpPage = '/signUp'
+export const resetPassword = '/reset'
+export const scoresPage = '/scores'
+export const gamePage = '/games'
