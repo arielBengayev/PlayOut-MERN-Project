@@ -1,4 +1,6 @@
 export const gameTitle = 'memory game'
+export const winCondition = 6
+export const startCondition = -1
 export const status = { 
     success: 'success', 
     wrong: 'wrong', 

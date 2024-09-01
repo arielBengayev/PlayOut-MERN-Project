@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react"
 import './WhackAMole.css'
-import { gameTitle, molePic } from "./Const"
+import { boardLength, gameTitle, molePic, moveIntervalTime } from "./Const"
 
 export default function WhackAMole({ setWinGame }) {
 
   const randomPlace = () => { return Math.floor(Math.random()*board.length) }
 
-  const board = Array.from({ length: 100 }, (_, index) => index)
+  const board = Array.from({ length: boardLength }, (_, index) => index)
   const [mole, setMole] = useState({ 
     place: randomPlace(), img: molePic 
   })
@@ -27,8 +27,8 @@ export default function WhackAMole({ setWinGame }) {
   }
   
   useEffect(()=>{
-        const plusInterval = setInterval (changePlace, 2000)
-        return () => clearInterval(plusInterval)
+        const moveInterval = setInterval (changePlace, moveIntervalTime)
+        return () => clearInterval(moveInterval)
   }, [])  
 
   return (

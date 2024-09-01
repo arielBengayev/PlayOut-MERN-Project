@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react'
-import { arrowKey, boardLength, finalPlace, firstPlace, gameTitle, invadersLength, keyDown, limit, nextPlace, startPlace } from './Const'
+import { arrowKey, boardLength, finalPlace, firstPlace, gameTitle, invadersIntervalTime, invadersLength, keyDown, limit, nextPlace, shotIntervalTime, startPlace, winCondition } from './Const'
 import './spaceInvaders.css'
 
 export default function SpaceInvaders({ setWinGame }){
@@ -31,7 +31,7 @@ export default function SpaceInvaders({ setWinGame }){
   }) 
 
   const invadersCheck = (cell) => { return invaders.place.includes(cell) } 
-  const winCheck = () => { if(invaders.place.length === 0) setWinGame(true) }
+  const winCheck = () => { if(invaders.place.length === winCondition) setWinGame(true) }
 
   const removeInvader = () => {
       setInvaders(i => ({...i, place: i.place.filter(invader => 
@@ -77,12 +77,12 @@ export default function SpaceInvaders({ setWinGame }){
   }, [tank])
 
   useEffect(() =>{
-    const moveInvadersInterval = setInterval (moveInvaders, 1200)
+    const moveInvadersInterval = setInterval (moveInvaders, invadersIntervalTime)
     return () => clearInterval(moveInvadersInterval)
   },[moveInvaders])  
 
   useEffect(()=>{
-    const moveShotInterval = setInterval(moveShot , 10)
+    const moveShotInterval = setInterval(moveShot , shotIntervalTime)
     return () => clearInterval(moveShotInterval)
   },[moveShot])
   

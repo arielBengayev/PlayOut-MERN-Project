@@ -5,7 +5,7 @@ import { getScores, listTitle } from "./Const"
 
 export default function ScoreList(){
   const [scores, setScores] = useState([])
-console
+
   const fetchData = async () => {
     try {
       const result = await axios.get(`${ port }${ getScores }`)
@@ -13,7 +13,7 @@ console
     } catch (err) { return err }
   }
 
-  useEffect(() => { fetchData() }, [scores])
+  useEffect(() => { fetchData() }, [])
 
   return (
     <div className="score-list">

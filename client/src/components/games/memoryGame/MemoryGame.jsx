@@ -1,5 +1,5 @@
 import React, {useState, useRef} from 'react'
-import { gameTitle, img, name, status } from './Const'
+import { gameTitle, img, name, startCondition, status, winCondition } from './Const'
 import Card from './Card'
 import './memoryGame.css'
 
@@ -18,7 +18,7 @@ export default function MemoryGame({ setWinGame }){
     { id: 5, name: name.css, status: status.noStatus, img: img.css },
     { id: 5, name: name.css, status: status.noStatus, img: img.css },
   ].sort(() => Math.random() - 0.5))
-  const [previous, setPrevious] = useState(-1)
+  const [previous, setPrevious] = useState(startCondition)
   const count = useRef(0)
 
   const check = (current) => {
@@ -27,9 +27,9 @@ export default function MemoryGame({ setWinGame }){
       newCards[current].status = status.success
       newCards[previous].status = status.success
       setCards([...newCards])
-      setPrevious(-1)
+      setPrevious(startCondition)
       count.current++
-      if(count.current === 6) setWinGame(true)
+      if(count.current === winCondition) setWinGame(true)
     } else if(current != previous && cards[current].status !== status.success) {
         const newCards = [...cards]
         newCards[current].status = status.wrong
@@ -40,13 +40,13 @@ export default function MemoryGame({ setWinGame }){
           newCards[current].status = status.noStatus
           newCards[previous].status = status.noStatus
           setCards([...newCards]) 
-            setPrevious(-1)
+            setPrevious(startCondition)
         }, 500)
       }
   }
 
   const click = (index) =>{
-    if(previous === -1 && cards[index].status === status.noStatus){
+    if(previous === startCondition && cards[index].status === status.noStatus){
       const newCards = [...cards]
       newCards[index].status = status.active
       setCards([...newCards])

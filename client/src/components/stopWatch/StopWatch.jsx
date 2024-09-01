@@ -21,7 +21,7 @@ export default function StopWatch({ run, win, score }){
     if(run) startRef.current = Date.now() - elapsedTime
   }
 
-  const zero = (n) => {
+  const zero = (n) => {// לשנות שם
     if(n < 10) return "0"+n
     return n
   }

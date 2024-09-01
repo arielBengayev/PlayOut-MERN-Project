@@ -1,4 +1,7 @@
 export const boardLength = 122
+export const winCondition = 0
+export const invadersIntervalTime = 1200
+export const shotIntervalTime = 10
 export const invadersLength = 34
 export const startPlace = { tank: 116, shot: 0 }
 export const finalPlace = 109

@@ -23,7 +23,7 @@ export default function Login(){
   const navigate = useNavigate()
   const { register, handleSubmit, setError, formState: { errors } } = useForm()
 
-  setItem(signedInKey, false)
+  setItem(signedInKey, false) //לשנות עוגיה
   
   const handleClickShowPassword = () => setShowPassword((show) => !show)
 
@@ -48,7 +48,7 @@ export default function Login(){
         <form onSubmit={ handleSubmit(onSubmit) }>
           <TextField 
             id="outlined-basic" 
-            label="Username" 
+            label="Username" //const
             {...register(username, { required: usernameRequired })}
             variant="outlined" 
             sx= {{ ...MUIstyle }}

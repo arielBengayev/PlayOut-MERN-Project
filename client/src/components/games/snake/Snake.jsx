@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react'
-import { arrowKey, gameTitle, keyDown } from './Const'
+import { arrowKey, gameTitle, keyDown, moveIntervalTime, newPlace, noMovement, snakeMove, startPlace, wall, winCondition } from './Const'
 import './snake.css'
 
 export default function SnakeGame({ setWinGame }) {
-  const [snake, setSnake] = useState([{ x: 10, y: 10 }])
-  const [food, setFood] = useState({ x: 15, y: 15 })
-  const [direction, setDirection] = useState({ x: 0, y: -1 })
+  const [snake, setSnake] = useState([startPlace.snake])
+  const [food, setFood] = useState(startPlace.food)
+  const [direction, setDirection] = useState(startPlace.direction)
   const [gameOver, setGameOver] = useState(false)
 
   const moveSnake = () => {
@@ -16,11 +16,11 @@ export default function SnakeGame({ setWinGame }) {
       head.y += direction.y
       if (head.x === food.x && head.y === food.y) {
         setFood({
-          x: Math.floor(Math.random() * 20),
-          y: Math.floor(Math.random() * 20),
+          x: Math.floor(Math.random()*wall.right),
+          y: Math.floor(Math.random()*wall.bottom),
         })
       } else newSnake.pop()
-      if (head.x < 0 || head.x >= 24 || head.y < 0 || head.y >= 24 ||
+      if (head.x < wall.left || head.x >= wall.right || head.y < wall.top || head.y >= wall.bottom ||
         newSnake.some((segment) => segment.x === head.x && segment.y === head.y)){
         setGameOver(true)
         return prev
@@ -28,26 +28,26 @@ export default function SnakeGame({ setWinGame }) {
       newSnake.unshift(head)
       return newSnake
     })
-    if(snake.length === 6) setWinGame(true)
+    if(snake.length === winCondition) setWinGame(true)
   }
 
   const restartGame = () => {
-    setSnake([{ x: 10, y: 10 }])
-    setFood({ x: 15, y: 15 })
-    setDirection({ x: 0, y: -1 })
+    setSnake([startPlace.snake])
+    setFood(startPlace.food)
+    setDirection(startPlace.direction)
     setGameOver(false)
   }
   
   useEffect(() => {
     const handleKeyDown = (e) => {
-        if (e.key === arrowKey.up && direction.y === 0)
-          setDirection({ x: 0, y: -1 })
-        else if (e.key === arrowKey.down && direction.y === 0) 
-          setDirection({ x: 0, y: 1 })
-        else if (e.key === arrowKey.left && direction.x === 0) 
-          setDirection({ x: -1, y: 0 })
-        else  if (e.key === arrowKey.right && direction.x === 0) 
-          setDirection({ x: 1, y: 0 })
+        if (e.key === arrowKey.up && direction.y === noMovement)
+          setDirection(snakeMove.up)
+        else if (e.key === arrowKey.down && direction.y === noMovement) 
+          setDirection(snakeMove.down)
+        else if (e.key === arrowKey.left && direction.x === noMovement) 
+          setDirection(snakeMove.left)
+        else  if (e.key === arrowKey.right && direction.x === noMovement) 
+          setDirection(snakeMove.right)
     }
     window.addEventListener(keyDown, handleKeyDown)
     return () => { window.removeEventListener(keyDown, handleKeyDown) }
@@ -55,7 +55,7 @@ export default function SnakeGame({ setWinGame }) {
 
   useEffect(() => {
     if (gameOver) restartGame()
-    const move = setInterval(moveSnake, 100)
+    const move = setInterval(moveSnake, moveIntervalTime)
     return () => clearInterval(move)
   }, [snake, direction, food, gameOver])
 
@@ -67,12 +67,18 @@ export default function SnakeGame({ setWinGame }) {
           <div
             key={ index }
             className="snake-segment"
-            style={{ left: `${ segment.x * 20 }px`, top: `${ segment.y * 20 }px` }}
+            style={{ 
+              left: `${ segment.x * newPlace }px`, 
+              top: `${ segment.y * newPlace }px` 
+            }}
           />
         ))}
         <div
           className="food"
-          style={{ left: `${ food.x * 20 }px`, top: `${ food.y * 20 }px` }}
+          style={{ 
+            left: `${ food.x * newPlace }px`, 
+            top: `${ food.y * newPlace }px` 
+          }}
         />
       </div>
     </div>
