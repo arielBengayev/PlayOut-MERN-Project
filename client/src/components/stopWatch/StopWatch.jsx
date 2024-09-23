@@ -21,7 +21,7 @@ export default function StopWatch({ run, win, score }){
     if(run) startRef.current = Date.now() - elapsedTime
   }
 
-  const zero = (n) => {// לשנות שם
+  const handleFormat = (n) => {
     if(n < 10) return "0"+n
     return n
   }
@@ -32,7 +32,7 @@ export default function StopWatch({ run, win, score }){
       s: Math.floor(elapsedTime / (1000) % 60),
       ms: Math.floor(elapsedTime % 1000 / 100)
     }
-    return `${ zero(time.m) }:${ zero(time.s) }:${ zero(time.ms) }`
+    return `${ handleFormat(time.m) }:${ handleFormat(time.s) }:${ handleFormat(time.ms) }`
   }
 
   if(win){

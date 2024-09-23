@@ -4,7 +4,7 @@ import axios from "axios"
 import { NavLink, useNavigate } from "react-router-dom"
 import { forgatPassword, login, loginTitle, newMember, SignUpTitle, MUIstyle, password, incorrectMessage, username, usernameRequired, passwordRequired, scoreKey, signedInKey, errAlert } from './Const'
 import { mainTitle, port } from '../Const'
-import { resetPassword, scoresPage, signUpPage } from '../../Const'
+import { resetPassword, startGamePage, signUpPage } from '../../Const'
 import { useLocalStorage } from '../utils/useLocalStorage'
 import TextField from '@mui/material/TextField'
 import IconButton from '@mui/material/IconButton'
@@ -23,7 +23,7 @@ export default function Login(){
   const navigate = useNavigate()
   const { register, handleSubmit, setError, formState: { errors } } = useForm()
 
-  setItem(signedInKey, false) //לשנות עוגיה
+  setItem(signedInKey, false)
   
   const handleClickShowPassword = () => setShowPassword((show) => !show)
 
@@ -34,7 +34,7 @@ export default function Login(){
         const score = { username: user.username, time: "" }
         setItem(scoreKey, score) 
         setItem(signedInKey, true)
-        navigate(scoresPage) 
+        navigate(startGamePage) 
       }
       else setError(username, { message: incorrectMessage })
     } catch (err) { alert(errAlert) }
@@ -48,13 +48,13 @@ export default function Login(){
         <form onSubmit={ handleSubmit(onSubmit) }>
           <TextField 
             id="outlined-basic" 
-            label="Username" //const
+            label="Username"
             {...register(username, { required: usernameRequired })}
             variant="outlined" 
             sx= {{ ...MUIstyle }}
           />
           { errors.username && <div className='err'>{ errors.username.message }</div> }
-          <FormControl sx={{ m: 1, width: 225, ...MUIstyle }} variant="outlined">
+          <FormControl sx={{ m: 2, width: 225, ...MUIstyle }} variant="outlined">
             <InputLabel htmlFor="outlined-adornment-password">
               { password }
             </InputLabel>

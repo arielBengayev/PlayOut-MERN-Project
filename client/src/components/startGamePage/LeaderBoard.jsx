@@ -3,7 +3,7 @@ import axios from "axios"
 import { port } from "../Const"
 import { getScores, listTitle } from "./Const"
 
-export default function ScoreList(){
+export default function LeaderBoard(){
   const [scores, setScores] = useState([])
 
   const fetchData = async () => {
@@ -16,7 +16,7 @@ export default function ScoreList(){
   useEffect(() => { fetchData() }, [])
 
   return (
-    <div className="score-list">
+    <div className="leader-board">
       <h1>{ listTitle }</h1><hr className="line"/>
       <ol>
         { scores.map((score, index) =>

@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom"
 import axios from "axios"
 import { addScore, scoreKey } from "./Const"
 import { port } from "../Const"
-import { scoresPage } from "../../Const"
+import { startGamePage } from "../../Const"
 import { useLocalStorage } from '../utils/useLocalStorage'
 import StopWatch from "../stopWatch/StopWatch"
 import MemoryGame from "../games/memoryGame/MemoryGame"
@@ -55,7 +55,7 @@ export default function GameController(){
     }
     if(win){
       addNewScore()
-      navigate(scoresPage)
+      navigate(startGamePage)
     }
   }
 
