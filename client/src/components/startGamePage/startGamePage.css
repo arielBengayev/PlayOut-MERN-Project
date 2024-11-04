@@ -1,6 +1,7 @@
 .start-game .main-title{
     letter-spacing: 3px;
     max-width: 390px;
+    margin-top: 0;
 }
 .start-game .leader-board{
     font-family: Arial, Helvetica, sans-serif;

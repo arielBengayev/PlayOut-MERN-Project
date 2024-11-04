@@ -7,8 +7,12 @@ import NotFoundPage from './components/notFoundPage/NotFoundPage'
 import ForgatPassword from './components/registration/ForgatPassword'
 import GameController from './components/gameController/GameController'
 import ProtectedRoutes from './components/utils/ProtectedRoutes'
-import { gamePage, homePage, loginPage, resetPassword, signUpPage, startGamePage } from './Const'
+import { aboutPage, gamePage, homePage, loginPage, newPassword, resetPassword, rulesPage, signUpPage, startGamePage, verifyCode } from './Const'
 import './app.css'
+import VerifyCode from './components/registration/VerifyCode'
+import ResetPassword from './components/registration/ResetPassword'
+import About from './components/about/About'
+import Rules from './components/rules/Rules'
 
 const router = createBrowserRouter([ 
   { path: homePage, element: <Home />, errorElement: <NotFoundPage /> },
@@ -22,6 +26,10 @@ const router = createBrowserRouter([
       { path: gamePage, element: <GameController /> },
     ],
   },
+  { path: verifyCode, element: <VerifyCode /> },
+  { path: newPassword, element: <ResetPassword /> },
+  { path: aboutPage, element: <About /> },
+  { path: rulesPage, element: <Rules /> }
 ])
 
 export default function App() {

@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form'
 import { useNavigate } from "react-router-dom"
 import axios from "axios"
 import { MUIstyle, password, signUp, login, passwordRequired, minLenMessage, numberRequired, SignUpTitle, username, usernameRequired, email, emailRequired, emailTaken, usernameTaken, errAlert } from './Const'
-import { port } from '../Const'
+import { port, mainTitle } from '../Const'
 import TextField from '@mui/material/TextField'
 import IconButton from '@mui/material/IconButton'
 import OutlinedInput from '@mui/material/OutlinedInput'
@@ -37,7 +37,7 @@ export default function SignUp(){
 
   return(
     <div className='registration'>
-      <h1 className='main-title'> welcom to<br/> play out</h1>
+      <h1 className='main-title'> { mainTitle }</h1>
       <div className="main-container">
         <h1 className='title'>Sign Up</h1>
         <form onSubmit={ handleSubmit(onSubmit) }>

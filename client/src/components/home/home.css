@@ -1,6 +1,99 @@
-.home-page{
+.home-page {
     position: fixed;
-    top: 100px;
+    top: 5px;
     left: 0;
     width: 100%;
+}
+
+.home-page .main-title{
+    font-size: 2.5rem;
+    letter-spacing: 3px;
+}
+
+.carousel-container {
+    width: 50%;
+    margin: 20px auto;
+}
+
+.carousel-container .carousel .slide img {
+    width: 50%;
+}
+
+.header {
+    border-bottom: 1px solid white;
+    padding-right: 30px;
+    padding-left: 20px;
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.logo {
+    color: white;
+}
+
+.nav-buttons {
+    display: flex;
+    gap: 40px;
+}
+
+.nav-buttons .MuiButton-outlined {
+    color: white;
+    border-color: white;
+}
+
+.dropdown-menu {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 60px; 
+    right: 0; 
+    background-color: #1c1c1c;
+    width: 120px; 
+    height: 200px;
+    z-index: 100; 
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+}
+
+.dropdown-menu.open {
+    transform: translateX(0);
+}
+
+.dropdown-menu .MuiButton-outlined {
+    color: white;
+    border: none; 
+    margin-bottom: 10px;
+    transition: font-size 0.3s ease;
+}
+
+.dropdown-menu .MuiButton-outlined:hover {
+    font-size: 1rem;
+}
+
+.hamburger {
+    display: none;
+    font-size: 24px;
+    color: white;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .carousel-container {
+        width: 90%;
+    }
+
+    .nav-buttons {
+        display: none;
+    }
+
+    .hamburger {
+        display: block;
+    }
 }

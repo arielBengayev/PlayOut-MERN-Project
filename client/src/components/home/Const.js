@@ -1,2 +1,7 @@
 export const loginTitle = 'login'
 export const singupTitle = 'singup'
+export const Slide = 'Slide'
+export const aboutTitle = 'about'
+export const rulesTitle = 'rules'
+export const webName = 'Play Out'
+export const mainTitle = '!! our games !!'
