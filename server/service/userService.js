@@ -10,7 +10,7 @@ const authenticateUser = async (username, password) => {
   } catch (err) { 
       return false 
   }
-  }
+}
 
 const findUser = async (username, email) => {
   try {

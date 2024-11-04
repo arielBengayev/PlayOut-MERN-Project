@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form'
 import axios from "axios"
 import { NavLink, useNavigate } from "react-router-dom"
 import { forgatPassword, login, loginTitle, newMember, SignUpTitle, MUIstyle, password, incorrectMessage, username, usernameRequired, passwordRequired, scoreKey, signedInKey, errAlert } from './Const'
-import { mainTitle, port } from '../Const'
+import { port } from '../Const'
 import { resetPassword, startGamePage, signUpPage } from '../../Const'
 import { useLocalStorage } from '../utils/useLocalStorage'
 import TextField from '@mui/material/TextField'
@@ -42,7 +42,6 @@ export default function Login(){
 
   return(
     <div className='registration'>
-      <h1 className='main-title'> { mainTitle }</h1>
       <div className="main-container">
         <h1 className='title'>{ loginTitle }</h1>
         <form onSubmit={ handleSubmit(onSubmit) }>

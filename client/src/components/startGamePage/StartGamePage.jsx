@@ -2,8 +2,7 @@ import { useNavigate } from "react-router-dom"
 import LeaderBoard from "./LeaderBoard"
 import Button from '@mui/material/Button'
 import { gamePage } from "../../Const"
-import { mainTitle } from "../Const"
-import { buttonStyle, start } from "./Const"
+import { buttonStyle, mainTitle, start } from "./Const"
 import './startGamePage.css'
 
 export default function Start(){

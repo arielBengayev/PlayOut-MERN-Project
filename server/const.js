@@ -5,6 +5,6 @@ const addScore = '/addScore'
 const resetPassword = '/resetPassword'
 const verifyCode = '/verifyCode'
 const resetPasswordConfirm = '/resetPasswordConfirm'
-const port = process.env.PORT || 3001
+const port = 3001
 
 module.exports = { login, signUp, getScores, addScore, port, resetPassword, verifyCode, resetPasswordConfirm }

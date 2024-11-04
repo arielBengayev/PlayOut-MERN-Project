@@ -62,7 +62,7 @@ export default function Home() {
           </NavLink>
         </div>
       </header>
-      <h1 className='main-title'>{ mainTitle }</h1>
+      <span className='main-title'>{ mainTitle }</span>
       <div className="carousel-container">
         <Carousel 
           autoPlay 
