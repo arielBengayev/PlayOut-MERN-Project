@@ -1,1 +1,1 @@
-export const port = 'https://playout-server.onrender.com'
+export const port = import.meta.env.VITE_REACT_APP_SERVER_PORT

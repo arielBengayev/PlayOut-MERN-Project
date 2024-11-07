@@ -33,7 +33,7 @@ export default function WhackAMole({ setWinGame }) {
 
   return (
     <>
-      <h1>{ gameTitle }</h1>
+      <h1 className="title">{ gameTitle }</h1>
       <div className='Whack-a-Mole'>
         {board.map((_, index) => (
           <div 

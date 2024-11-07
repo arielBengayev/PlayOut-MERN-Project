@@ -1,5 +1,6 @@
 .space .title{
-    margin-left: 5px;
+    margin-top: 0;
+    margin-bottom: 0;
 }
 .space .board{
     display: grid;
@@ -9,7 +10,7 @@
 }
 .space .cell{
     width: 44px;
-    height: 44px;
+    height: 40px;
     /* border: 1px solid white; */
 }
 .space .cell-tank{

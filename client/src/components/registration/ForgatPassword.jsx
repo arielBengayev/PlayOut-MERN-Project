@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form'
 import { useNavigate } from "react-router-dom"
 import axios from "axios"
-import { MUIstyle, password, signUp, login, passwordRequired, minLenMessage, numberRequired, SignUpTitle, username, usernameRequired, email, emailRequired, errAlert, resetPasswordTitle, sendTitle, incorrectEmail, resetPassword } from './Const'
+import { MUIstyle, email, emailRequired, errAlert, resetPasswordTitle, sendTitle, incorrectEmail, resetPassword } from './Const'
 import { port } from '../Const'
 import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button'

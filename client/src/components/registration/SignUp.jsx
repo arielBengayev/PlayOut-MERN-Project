@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useNavigate } from "react-router-dom"
 import axios from "axios"
-import { MUIstyle, password, signUp, login, passwordRequired, minLenMessage, numberRequired, SignUpTitle, username, usernameRequired, email, emailRequired, emailTaken, usernameTaken, errAlert } from './Const'
+import { MUIstyle, password, signUp, login, passwordRequired, minLenMessage, numberRequired, username, usernameRequired, email, emailRequired, emailTaken, usernameTaken, errAlert, signUpTitle } from './Const'
 import { port } from '../Const'
 import TextField from '@mui/material/TextField'
 import IconButton from '@mui/material/IconButton'
@@ -38,7 +38,7 @@ export default function SignUp(){
   return(
     <div className='registration'>
       <div className="main-container">
-        <h1 className='title'>Sign Up</h1>
+        <h1 className='title'>{ signUpTitle }</h1>
         <form onSubmit={ handleSubmit(onSubmit) }>
           <TextField 
             id="outlined-basic" 
@@ -108,7 +108,7 @@ export default function SignUp(){
             sx={{ m:2, width: '120px' }} 
             size='large'
           >
-            { SignUpTitle }
+            { signUpTitle }
           </Button>
         </form>
       </div>

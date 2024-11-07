@@ -1,5 +1,7 @@
 .watch-display{
-    margin-top: 40px;
-    font-size: 2rem;
-    font-family: ROG Fonts;
-  }
+  margin-top: -70px;
+  font-size: 3.5rem;
+  font-weight: bold;
+  letter-spacing: 5px;
+  min-width: 320px;
+}

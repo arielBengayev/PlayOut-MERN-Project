@@ -20,9 +20,12 @@ export default function LeaderBoard(){
       <h1>{ listTitle }</h1><hr className="line"/>
       <ol>
         { scores.map((score, index) =>
-          <li key={ index }>
-            { score.username } - { score.time }
-          </li>
+          <>
+            <li key={ index } className="score-item">
+              { score.username } - { score.time }
+            </li>
+            <hr className="line"/>
+          </>
         ) }
       </ol>
     </div>

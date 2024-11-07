@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import axios from "axios"
 import { NavLink, useNavigate } from "react-router-dom"
-import { forgatPassword, login, loginTitle, newMember, SignUpTitle, MUIstyle, password, incorrectMessage, username, usernameRequired, passwordRequired, scoreKey, signedInKey, errAlert } from './Const'
+import { forgatPassword, login, loginTitle, newMember, signUpTitle, MUIstyle, password, incorrectMessage, username, usernameRequired, passwordRequired, scoreKey, signedInKey, errAlert } from './Const'
 import { port } from '../Const'
 import { resetPassword, startGamePage, signUpPage } from '../../Const'
 import { useLocalStorage } from '../utils/useLocalStorage'
@@ -94,7 +94,7 @@ export default function Login(){
         <label className='new-member'>
             { newMember } 
             <NavLink to={ signUpPage } className='sign-up'>
-                { SignUpTitle }
+                { signUpTitle }
             </NavLink>
         </label>
       </div>

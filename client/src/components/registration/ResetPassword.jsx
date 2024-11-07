@@ -1,17 +1,22 @@
+import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useNavigate, useLocation } from "react-router-dom"
 import axios from "axios"
-import { MUIstyle, login, resetPasswordTitle, passwordRequired, minLenMessage, sendTitle, errAlert, numberRequired, resetPasswordConfirm, FailedAlert } from './Const'
+import { MUIstyle, login, resetPasswordTitle, passwordRequired, minLenMessage, sendTitle, errAlert, numberRequired, resetPasswordConfirm, FailedAlert, password } from './Const'
 import { port } from '../Const'
-import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button'
+import { FormControl, InputLabel, OutlinedInput, InputAdornment, IconButton } from '@mui/material'
+import { Visibility, VisibilityOff } from '@mui/icons-material'
 import './registration.css'
 
 export default function ResetPassword() {
-  const { register, handleSubmit, setError, formState: { errors } } = useForm()
+  const [showPassword, setShowPassword] = useState(false)
+  const { register, handleSubmit, formState: { errors } } = useForm()
   const navigate = useNavigate()
   const location = useLocation()
   const email = location.state?.email
+
+  const handleClickShowPassword = () => setShowPassword((show) => !show)
 
   const onSubmit = async (data) => {
     try {
@@ -26,11 +31,27 @@ export default function ResetPassword() {
       <div className="reset-main-container">
         <h1 className='reset-title'>{ resetPasswordTitle }</h1>
         <form onSubmit={ handleSubmit(onSubmit) }>
-          <TextField
-            id="outlined-basic"
-            label="New Password"
-            variant="outlined"
-            type="password"
+          <FormControl sx={{ width: 225, ...MUIstyle }} variant="outlined">
+          <InputLabel htmlFor="outlined-adornment-password">
+            { password }
+          </InputLabel>
+          <OutlinedInput
+            id="outlined-adornment-password"
+            type={ showPassword ? 'text' : 'password' }
+            endAdornment={
+              <InputAdornment position="end">
+                <IconButton
+                  aria-label="toggle password visibility"
+                  onClick={ handleClickShowPassword }
+                  edge="end"
+                >
+                  { showPassword ? 
+                  <Visibility sx={{ color: 'white' }}/> : 
+                  <VisibilityOff sx={{ color: 'white' }}/> }
+                </IconButton>
+              </InputAdornment>
+            }
+            label="Password"
             {...register("newPassword", { 
               required: passwordRequired,
               minLength: { 
@@ -42,8 +63,8 @@ export default function ResetPassword() {
                 return true
               } 
             })}
-            sx={{ ...MUIstyle }}
           />
+          </FormControl>
           { errors.newPassword && 
             <div className='err'>{ errors.newPassword.message }</div> 
           }

@@ -1,27 +1,25 @@
 .start-game .main-title{
     letter-spacing: 3px;
-    max-width: 390px;
-    margin-top: 0;
+    margin-top: -70px;
     font-size: 40px;
 }
 .start-game .leader-board{
-    font-family: Arial, Helvetica, sans-serif;
     letter-spacing: 2px;
     border: 1px solid;
     border-radius: 5px;
-    min-height: 370px;
-    min-width: 290px;
+    min-height: 450px;
+    min-width: 350px;
     margin: 30px;
     box-shadow: 0 0 10px;
 }
 .start-game ol{
-    margin-top: 20px;
+    padding-left: 1px;
 }
 .start-game li {
-    padding-right: 80px;
-    margin-top: 10px;
-    font-size: 18px;
+    list-style-position: inside;
     text-align: left;
+    font-size: 18px;
+    margin-top: -5px;
 }
 .start-game .line{
     box-shadow: 0 0 10px;

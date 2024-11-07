@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form'
 import { useNavigate, useLocation } from "react-router-dom"
 import axios from "axios"
-import { MUIstyle, login, resetPassword, codeRequired, verifyCodeTitle, sendTitle, errAlert, verifyCode, incorrectCode } from './Const'
+import { MUIstyle, login, resetPassword, codeRequired, verifyCodeTitle, sendTitle, errAlert, verifyCode, incorrectCode, minCodeLen } from './Const'
 import { port } from '../Const'
 import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button'
@@ -33,7 +33,10 @@ export default function VerifyCode() {
             type="text"
             {...register("code", { 
               required: codeRequired,
-              pattern: /^[0-9]{6}$/
+              minLength: { 
+                value: 6, 
+                message: minCodeLen 
+              }
             })}
             sx={{ ...MUIstyle }}
           />

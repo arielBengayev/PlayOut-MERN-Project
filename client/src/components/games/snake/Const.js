@@ -2,11 +2,11 @@ export const gameTitle = 'snake game'
 export const winCondition = 6
 export const keyDown = 'keydown'
 export const newPlace = 20
-export const moveIntervalTime = 100
+export const moveIntervalTime = 70
 export const noMovement = 0
 export const wall = {
     top: 0,
-    bottom: 24,
+    bottom: 22,
     left: 0,
     right: 24
 }

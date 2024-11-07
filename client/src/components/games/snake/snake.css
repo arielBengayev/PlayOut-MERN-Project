@@ -7,7 +7,7 @@
 .snake .board {
     position: relative;
     min-width: 480px;
-    min-height: 480px;
+    min-height: 440px;
     border: 1px solid white;
     border-radius: 5px;
 }

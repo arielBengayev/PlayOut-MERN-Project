@@ -61,7 +61,7 @@ export default function SnakeGame({ setWinGame }) {
 
   return (
     <div className='snake'>
-      <h1>{ gameTitle }</h1>
+      <h1 className='title'>{ gameTitle }</h1>
       <div className='board'>
         {snake.map((segment, index) => (
           <div

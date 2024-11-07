@@ -1,20 +1,19 @@
-.tic-tac-toe .title{
-  margin-left: 11px;
-}
 .tic-tac-toe .board{
     display: grid;
-    grid-template-columns: repeat(3,6.5rem);
-    grid-template-rows: repeat(3,8rem);
+    grid-template-columns: repeat(3,6.7rem);
+    grid-template-rows: repeat(3,8.3rem);
     max-width: 260px;
+    
   }
   .tic-tac-toe .box{
     border: 1px solid;
     border-radius: 5px;
-    font-family: ROG Fonts;
-    background: #3d3d3d;
-    font-size: 4rem;
-    width: 95px;
-    height: 120px;
+    font-family: "Poppins", sans-serif;
+    background: #2B2B2B;
+    font-size: 5rem;
+    font-weight: bold;
+    width: 100px;
+    height: 125px;
     cursor: pointer;
     transition: background-color 0.3s ease;
   }
